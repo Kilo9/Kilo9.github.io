@@ -1,40 +1,39 @@
 //script.js -- Kilo9
-//website canvas script
-var index = 0;
 
-var text = ['Hello all', 'Hallo Mama!', 'Hallo Papi!', 'This is Jeremy Bassi', 'How are you doing?', 'Thank you for visiting', 'Made using html5 canvas'];
+$(document).ready(function() {
 
-init();
+  /*
+  //swaying effect
+  function sway() {
+    $('p#front, div#back').animate({
+      top: '+=40px'
+    }, 1000, function() {
+      $('p#front, div#back').animate({
+        top: '-=40px'
+      }, 1000);
+    });
+  }
 
-function init() {
-	var canvas = document.getElementById('screen');
+  function raise(selector, amount, time) {
+    $(selector).animate({
+      top: '+=' + amount + 'px'
+    }, time);
+  }
 
-	if (canvas.getContext) {
-		var ctx = canvas.getContext('2d');
+  setInterval(sway, 2000);
+  */
+  
+  
 
-		//To get rid of blurriness
-		ctx.translate(0.5, 0.5);
-
-		window.setInterval(function () { update(ctx, canvas.width, canvas.height);}, 2000);
-	}
-}
-
-function update(ctx, w, h) {
-	//logic
-
-	draw(ctx, w, h);
-}
-
-function draw(ctx, w, h) {
-
-	ctx.fillStyle = 'orange';
-	ctx.fillRect(0, 0, w, h);
-
-	if (index < text.length) {
-		ctx.fillStyle = 'blue';
-		ctx.font = '40px Arial';
-		var metrics = ctx.measureText(text[index]);
-		var width = metrics.width;	
-		ctx.fillText(text[index++], w / 2 - width / 2, h / 2);
-	}
-}
+  //back slider
+  $('p#front').hover(function () {
+    $('p#front, div#back').finish();
+    $('div#back').animate({
+      top: '140px'
+    });
+  }, function () {
+    $('div#back').animate({
+      top: '30px'
+    })
+  })
+});
