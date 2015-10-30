@@ -2,31 +2,30 @@
 
 $(document).ready(function() {
 
-  /*
   //swaying effect
   function sway() {
-    $('p#front, div#back').animate({
+    $('div#container').animate({
       top: '+=40px'
     }, 1000, function() {
-      $('p#front, div#back').animate({
+      $('div#container').animate({
         top: '-=40px'
       }, 1000);
     });
   }
 
+  //raise by amount
   function raise(selector, amount, time) {
     $(selector).animate({
       top: '+=' + amount + 'px'
     }, time);
   }
 
-  setInterval(sway, 2000);
-  */
-  
-  
+  //set sway on loop
+  var timer = setInterval(sway, 2500);
 
   //back slider
-  $('p#front').hover(function () {
+  $('div#container').hover(function () {
+    window.clearInterval(timer);
     $('p#front, div#back').finish();
     $('div#back').animate({
       top: '140px'
@@ -35,5 +34,6 @@ $(document).ready(function() {
     $('div#back').animate({
       top: '30px'
     })
+    timer = setInterval(sway, 2500);
   })
 });
